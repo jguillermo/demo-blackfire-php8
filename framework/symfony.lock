@@ -79,9 +79,6 @@
     "evenement/evenement": {
         "version": "v3.0.1"
     },
-    "firebase/php-jwt": {
-        "version": "v5.2.1"
-    },
     "friends-of-behat/symfony-extension": {
         "version": "2.0",
         "recipe": {
@@ -252,21 +249,6 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
-    "snc/redis-bundle": {
-        "version": "2.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.0",
-            "ref": "85bbdb3d2db531e20874de29bab0587f93604fa8"
-        },
-        "files": [
-            "config/packages/snc_redis.yaml"
-        ]
-    },
-    "symfony/amqp-messenger": {
-        "version": "v5.2.3"
-    },
     "symfony/cache": {
         "version": "v5.1.5"
     },
@@ -297,9 +279,6 @@
     "symfony/doctrine-bridge": {
         "version": "v5.1.5"
     },
-    "symfony/doctrine-messenger": {
-        "version": "v5.2.3"
-    },
     "symfony/dotenv": {
         "version": "v5.1.5"
     },
@@ -311,9 +290,6 @@
     },
     "symfony/event-dispatcher-contracts": {
         "version": "v2.2.0"
-    },
-    "symfony/expression-language": {
-        "version": "v5.1.5"
     },
     "symfony/filesystem": {
         "version": "v5.1.5"
@@ -364,18 +340,6 @@
     "symfony/intl": {
         "version": "v5.1.5"
     },
-    "symfony/messenger": {
-        "version": "4.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.3",
-            "ref": "e9a414b113ceadbf4e52abe37bf8f1b443f06ccb"
-        },
-        "files": [
-            "config/packages/messenger.yaml"
-        ]
-    },
     "symfony/monolog-bridge": {
         "version": "v5.1.5"
     },
@@ -418,17 +382,8 @@
     "symfony/process": {
         "version": "v5.1.5"
     },
-    "symfony/property-access": {
-        "version": "v5.1.5"
-    },
-    "symfony/property-info": {
-        "version": "v5.1.5"
-    },
     "symfony/proxy-manager-bridge": {
         "version": "v5.2.4"
-    },
-    "symfony/redis-messenger": {
-        "version": "v5.2.3"
     },
     "symfony/routing": {
         "version": "5.1",
@@ -443,30 +398,6 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
-    },
-    "symfony/security-bundle": {
-        "version": "5.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.1",
-            "ref": "0a4bae19389d3b9cba1ca0102e3b2bccea724603"
-        },
-        "files": [
-            "config/packages/security.yaml"
-        ]
-    },
-    "symfony/security-core": {
-        "version": "v5.1.5"
-    },
-    "symfony/security-csrf": {
-        "version": "v5.1.5"
-    },
-    "symfony/security-guard": {
-        "version": "v5.1.5"
-    },
-    "symfony/security-http": {
-        "version": "v5.1.5"
     },
     "symfony/service-contracts": {
         "version": "v2.2.0"
