@@ -1,0 +1,18 @@
+parameters:
+  excludes_analyse:
+    - vendor
+    - var
+    - config
+    - tests
+    - features
+    - phpinsights.php
+  symfony:
+    container_xml_path: '%currentWorkingDirectory%/var/cache/dev/App_KernelDevDebugContainer.xml'
+  fileExtensions:
+    - php
+includes:
+  - ./vendor/phpstan/phpstan-doctrine/extension.neon
+  - ./vendor/phpstan/phpstan-doctrine/rules.neon
+  - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+  - ./vendor/phpstan/phpstan-strict-rules/rules.neon
+  - ./vendor/phpstan/phpstan-symfony/extension.neon

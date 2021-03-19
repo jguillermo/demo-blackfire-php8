@@ -1,0 +1,66 @@
+version: "3.8"
+services:
+  traefik:
+    image: "traefik:v2.4"
+    command:
+      - "--accesslog=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      api:
+        ipv4_address: 12.12.12.100
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      BLACKFIRE_LOG_LEVEL: 4
+      BLACKFIRE_SERVER_ID: 79a5ee03-001c-4593-8b4e-68cd550abe6b
+      BLACKFIRE_SERVER_TOKEN: 2c58909fa0506a7a18d094fee9ea5dcc136faf8fc1f633744f4a8641a66e4c2b
+      BLACKFIRE_CLIENT_ID: 70a407fe-906c-4ba5-a700-4283b46213d8
+      BLACKFIRE_CLIENT_TOKEN: 720f22b54909a95c905703ada02c94b4f129b1b46912809986285de0da34e1f3
+      BLACKFIRE_ENVIRONMENT: UNIFIED
+    networks:
+      api:
+        ipv4_address: 12.12.12.220
+  user:
+    build:
+      context: Dockerfiles/php
+      target: dev
+    image: app/user:dev
+
+    environment:
+      BLACKFIRE_LOG_LEVEL: 0
+      BLACKFIRE_CLIENT_ID: 70a407fe-906c-4ba5-a700-4283b46213d8
+      BLACKFIRE_CLIENT_TOKEN: 720f22b54909a95c905703ada02c94b4f129b1b46912809986285de0da34e1f3
+      BLACKFIRE_ENVIRONMENT: UNIFIED
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.user.rule=Host(`api.app.com`) && PathPrefix(`/healthcheck`, `/users`, `/tokens`)"
+      - "traefik.http.routers.user.entrypoints=websecure"
+      - "traefik.http.routers.user.tls=true"
+      - "traefik.http.services.user.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.cors.headers.accesscontrolalloworiginlist=*"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=OPTIONS,GET,POST,PUT,DELETE"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowheaders=Content-Type,Authorization,live,LIVE"
+      - "traefik.http.middlewares.cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.cors.headers.addvaryheader=true"
+      - "traefik.http.routers.user.middlewares=cors@docker"
+    extra_hosts:
+      api.app.com: 12.12.12.100
+    networks:
+      api: null
+    depends_on:
+      - traefik
+    volumes:
+      - ~/.composer:/root/.composer:rw
+      - ../performance:/var/www:rw
+networks:
+  api:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 12.12.12.0/24

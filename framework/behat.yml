@@ -1,0 +1,17 @@
+default:
+  suites:
+    default:
+      contexts:
+        - Behat\Behat\FeatureContext
+      filters:
+        tags: "~@blackfire"
+    blackfire:
+      contexts:
+        - Behat\Behat\FeatureContext
+      filters:
+        tags: "@blackfire"
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: App\Kernel
+        environment: dev

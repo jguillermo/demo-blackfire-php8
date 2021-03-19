@@ -1,0 +1,16 @@
+behat/
+test_results/
+.ppm/
+core
+/src/ValueObject/Routing/RouteName.php
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/src/.preload.php
+/var/
+/vendor/
+###< symfony/framework-bundle ###

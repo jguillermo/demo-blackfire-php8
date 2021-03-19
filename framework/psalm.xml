@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" errorLevel="7" totallyTyped="true"
+       strictBinaryOperands="true" allowPhpStormGenerics="true" useDocblockPropertyTypes="true"
+       xmlns="https://getpsalm.org/schema/config"
+       xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd">
+    <projectFiles>
+        <directory name=".."/>
+        <ignoreFiles>
+            <directory name="*vendor"/>
+            <directory name="*var"/>
+            <directory name="*features/"/>
+            <file name="phpinsights.php"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <containerXml>var/cache/dev/App_KernelDevDebugContainer.xml</containerXml>
+        </pluginClass>
+        <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
+    </plugins>
+
+    <issueHandlers>
+        <MethodSignatureMismatch errorLevel="suppress"/>
+        <UndefinedDocblockClass errorLevel="suppress"/>
+        <MissingFile errorLevel="suppress"/>
+    </issueHandlers>
+</psalm>
