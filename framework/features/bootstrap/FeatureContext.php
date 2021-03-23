@@ -56,7 +56,7 @@ final class FeatureContext implements Context
     public function __construct()
     {
         $this->domain = getenv('DOMAIN');
-        $this->baseUrl = sprintf('https://%s/', $this->domain);
+        $this->baseUrl = sprintf('http://%s/', $this->domain);
     }
 
     /**
