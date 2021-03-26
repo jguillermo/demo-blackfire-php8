@@ -63,6 +63,7 @@ final class BlackfireSingleton
     public function startBuild(): void
     {
         if ($this->isProfiling) {
+            $this->profileConfig->assert('main.wall_time < 100ms', 'Basic wall time assertion');
             $this->profileConfig->assert('percent(main.wall_time) < 10%', 'Its not slowest');
             $this->profileConfig->assert('percent(main.peak_memory) < 10%', 'Does not consume more memory');
             $title = sprintf(
